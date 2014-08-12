@@ -40,8 +40,8 @@ greeting();
 
 
 		if(hotOrcold === 0) {
-			$("#hot-cold-scale").replaceWith("<h2 id='feedback'>" + 
-				"You WON!" + "<br>" + "Do you want to play again?" + "<br><br>" + "<a class='playagain' style='display:inline-block;' href='#'>" + "YES" + "</a>" + " | " + "<a class='discontinue' href='goodbye.html'>" + "NO" + "</a>" + "</h2>");
+			$("#hot-cold-scale").replaceWith("<div id='hot-cold-scale'><h2>" + 
+				"You WON!" + "<br>" + "Do you want to play again?" + "<br><br>" + "<a class='playagain' style='display:inline-block;' href='#'>" + "YES" + "</a>" + " | " + "<a class='discontinue' href='goodbye.html'>" + "NO" + "</a>" + "</h2></div>");
 		}
 
 		else if(hotOrcold >= 51 && hotOrcold <=60) {
@@ -124,7 +124,9 @@ greeting();
 		$("#guessList").empty();
 		secretNumber();
 		var guessCount = 0;
-		$("#hot-cold-scale").replaceWith("<h2 id='feedback'>" + "New game! Make your guess, " + userName + "!" + "</h2>");
+		$("#hot-cold-scale").replaceWith("<div id='hot-cold-scale'><h2>" + "New game! Make your guess, " + userName + "!" + "</h2></div>");
+		$("#thermometer").replaceWith("<div id='thermometer'><img src='graphthermometer.png' width='50px' alt='hot'></div>");
+
 		$('#count').replaceWith("<span id='count'>" + 0 + "</span>");
 
 	});
@@ -134,7 +136,9 @@ greeting();
 		$("#guessList").empty();
 		secretNumber();
 		var guessCount = 0;
-		$("#hot-cold-scale").replaceWith("<h2 id='feedback'>" + "New game! Make your guess, " + userName + "!" + "</h2>");
+		$("#hot-cold-scale").replaceWith("<div id='hot-cold-scale'><h2>" + "New game! Make your guess, " + userName + "!" + "</h2></div>");
+		$("#thermometer").replaceWith("<div id='thermometer'><img src='graphthermometer.png' width='50px' alt='hot'></div>");
+
 		$('#count').replaceWith("<span id='count'>" + 0 + "</span>");
 
 	}) ;	
