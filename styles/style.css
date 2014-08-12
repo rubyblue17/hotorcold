@@ -314,6 +314,14 @@ input:focus {
    color: #95a5a6; 
 }
 
+#win-message {
+	display: none;
+}
+
+.show {
+	display: inline-block !important;
+}
+
 p.your-guesses {
 font-size: 1em;
 }

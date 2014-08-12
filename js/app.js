@@ -40,7 +40,8 @@ greeting();
 
 
 		if(hotOrcold === 0) {
-			$("#hot-cold-scale").replaceWith("<div id='hot-cold-scale'><h2>" + "You WON!" + "<br>" + "Do you want to play again?" + "<br><br>" + "<a class='playagain' style='display:inline-block;' href='#'>" + "YES" + "</a>" + " | " + "<a class='discontinue' href='goodbye.html'>" + "NO" + "</a>" + "</h2></div>");
+			$("#hot-cold-scale").hide();
+			$("#win-message").addClass('show');
 		}
 
 		else if(hotOrcold >= 51 && hotOrcold <=60) {
@@ -125,6 +126,8 @@ greeting();
 		$("#guessList").empty();
 		secretNumber();
 		var guessCount = 0;
+		$("#hot-cold-scale").show();
+		$("#win-message").removeClass('show');		
 		$("#hot-cold-scale h2").text("New game! Make your guess, " + userName + "!");
 		$(".thermometer").attr('src', 'graphthermometer.png');
 
@@ -134,12 +137,14 @@ greeting();
 
 	});
 
-	$("#hot-cold-scale").on("click", ".playagain", function(event) {
+	$("#win-message").on("click", ".playagain", function(event) {
 			event.preventDefault();
 
 		$("#guessList").empty();
 		secretNumber();
 		var guessCount = 0;
+		$("#hot-cold-scale").show();
+		$("#win-message").removeClass('show');						
 		$("#hot-cold-scale h2").text("New game! Make your guess, " + userName + "!");
 		$(".thermometer").attr('src', 'graphthermometer.png');
 		$('#userGuess').focus();
