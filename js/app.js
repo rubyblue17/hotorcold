@@ -8,7 +8,7 @@ $(document).ready(function(){
 function greeting () {
 
 	if (userName != null) {
-	$("#hot-cold-scale").replaceWith("<div id='hot-cold-scale'><h2>" +  "Hi, " + userName + "! Make your guess below." + "</h2></div>");
+	$("#hot-cold-scale h2").text("Hi, " + userName + "! Make your guess below.");
 	}
 	else {
 		alert("You forgot to enter your name! Please enter your name."); 
@@ -40,60 +40,59 @@ greeting();
 
 
 		if(hotOrcold === 0) {
-			$("#hot-cold-scale").replaceWith("<div id='hot-cold-scale'><h2>" + 
-				"You WON!" + "<br>" + "Do you want to play again?" + "<br><br>" + "<a class='playagain' style='display:inline-block;' href='#'>" + "YES" + "</a>" + " | " + "<a class='discontinue' href='goodbye.html'>" + "NO" + "</a>" + "</h2></div>");
+			$("#hot-cold-scale").replaceWith("<div id='hot-cold-scale'><h2>" + "You WON!" + "<br>" + "Do you want to play again?" + "<br><br>" + "<a class='playagain' style='display:inline-block;' href='#'>" + "YES" + "</a>" + " | " + "<a class='discontinue' href='goodbye.html'>" + "NO" + "</a>" + "</h2></div>");
 		}
 
 		else if(hotOrcold >= 51 && hotOrcold <=60) {
-			$("#hot-cold-scale").replaceWith("<div id='hot-cold-scale'><h2>" + "Brrrrrrrrr!" + "</h2></div>");
-			$("#thermometer").replaceWith("<div id='thermometer'><img src='graphthermometer-brrr.png' width='50px' alt='hot'></div>");
+			$("#hot-cold-scale h2").text("Brrrrrrrrr!");
+			$(".thermometer").attr('src', 'graphthermometer-brrr.png');
 
 		}
 
 		else if(hotOrcold >= 41 && hotOrcold <=50) {
-			$("#hot-cold-scale").replaceWith("<div id='hot-cold-scale'><h2>" + "Cold!" + "</h2></div>");
-			$("#thermometer").replaceWith("<div id='thermometer'><img src='graphthermometer-cold.png' width='50px' alt='hot'></div>");
+			$("#hot-cold-scale h2").text("Cold!");
+			$(".thermometer").attr('src', 'graphthermometer-cold.png');
 		}
 
 		else if(hotOrcold >= 31 && hotOrcold <=40) {
-			$("#hot-cold-scale").replaceWith("<div id='hot-cold-scale'><h2>" + "Kinda chilly." + "</h2></div>");
-			$("#thermometer").replaceWith("<div id='thermometer'><img src='graphthermometer-chilly.png' width='50px' alt='hot'></div>");
+			$("#hot-cold-scale h2").text("Kinda chilly.");
+			$(".thermometer").attr('src', 'graphthermometer-chilly.png');
 
 		}
 
 		else if(hotOrcold >= 26 && hotOrcold <=30) {
-			$("#hot-cold-scale").replaceWith("<div id='hot-cold-scale'><h2>" + "Meh. Lukewarm." + "</h2></div>");
-			$("#thermometer").replaceWith("<div id='thermometer'><img src='graphthermometer-lukewarm.png' width='50px' alt='hot'></div>");
+			$("#hot-cold-scale h2").text("Meh. Lukewarm.");
+			$(".thermometer").attr('src', 'graphthermometer-lukewarm.png');
 
 		}
 
 		else if(hotOrcold >= 21 && hotOrcold <=25) {
-			$("#hot-cold-scale").replaceWith("<div id='hot-cold-scale'><h2>" + "Warm!" + "</h2></div>");
-			$("#thermometer").replaceWith("<div id='thermometer'><img src='graphthermometer-warm.png' width='50px' alt='hot'></div>");
+			$("#hot-cold-scale h2").text("Warm!");
+			$(".thermometer").attr('src', 'graphthermometer-warm.png');
 
 		}
 
 		else if(hotOrcold >= 11 && hotOrcold <=20) {
-			$("#hot-cold-scale").replaceWith("<div id='hot-cold-scale'><h2>" + "Warmer!" + "</h2></div>");
-			$("#thermometer").replaceWith("<div id='thermometer'><img src='graphthermometer-warmer.png' width='50px' alt='hot'></div>");
+			$("#hot-cold-scale h2").text("Warmer!");
+			$(".thermometer").attr('src', 'graphthermometer-warmer.png');
 
 		}
 
 		else if(hotOrcold >= 6 && hotOrcold <=10) {
-			$("#hot-cold-scale").replaceWith("<div id='hot-cold-scale'><h2>" + "Smokin!" + "</h2></div>");
-			$("#thermometer").replaceWith("<div id='thermometer'><img src='graphthermometer-smokin.png' width='50px' alt='hot'></div>");
+			$("#hot-cold-scale h2").text("Smokin!");
+			$(".thermometer").attr('src', 'graphthermometer-smokin.png');
 
 		}
 
 		else if(hotOrcold >= 1 && hotOrcold <=5) {
-			$("#hot-cold-scale").replaceWith("<div id='hot-cold-scale'><h2>" + "On FIRE!" + "</h2></div>");
-			$("#thermometer").replaceWith("<div id='thermometer'><img src='graphthermometer-fire.png' width='50px' alt='hot'></div>");
+			$("#hot-cold-scale h2").text("On FIRE!");
+			$(".thermometer").attr('src', 'graphthermometer-fire.png');
 
 		}
 
 		else {
-			$("#hot-cold-scale").replaceWith("<div id='hot-cold-scale'><h2>" + "Freezing!" + "</h2></div>");
-			$("#thermometer").replaceWith("<div id='thermometer'><img src='graphthermometer-freezing.png' width='50px' alt='hot'></div>");
+			$("#hot-cold-scale h2").text("Freezing!");
+			$(".thermometer").attr('src', 'graphthermometer-freezing.png');
 
 		}
 	};
@@ -101,11 +100,13 @@ greeting();
 	var guessCount = 0;
 	var countTotal = function(){
   		guessCount += 1;
-   		$('#count').replaceWith("<span id='count'>" + guessCount + "</span>");
+   		$('#count').text(guessCount);
   	};
 
-	$("#guessButton").on("click", function(){
+	$("#guessButton").on("click", function(event){
 	event.preventDefault();
+
+
 		var guessNumber = $("#userGuess").val();
 			if(guessNumber >=1 && guessNumber <=100 && guessNumber % 1 === 0 ) {
 				$("#guessList").prepend("<li>" + guessNumber + "</li>");
@@ -124,20 +125,24 @@ greeting();
 		$("#guessList").empty();
 		secretNumber();
 		var guessCount = 0;
-		$("#hot-cold-scale").replaceWith("<div id='hot-cold-scale'><h2>" + "New game! Make your guess, " + userName + "!" + "</h2></div>");
-		$("#thermometer").replaceWith("<div id='thermometer'><img src='graphthermometer.png' width='50px' alt='hot'></div>");
+		$("#hot-cold-scale h2").text("New game! Make your guess, " + userName + "!");
+		$(".thermometer").attr('src', 'graphthermometer.png');
 
-		$('#count').replaceWith("<span id='count'>" + 0 + "</span>");
+		$('#count').text(guessCount);
+		$('#userGuess').focus();
+
 
 	});
 
-	$(".playagain").on("click", function() {
+	$("#hot-cold-scale").on("click", ".playagain", function(event) {
+			event.preventDefault();
 
 		$("#guessList").empty();
 		secretNumber();
 		var guessCount = 0;
-		$("#hot-cold-scale").replaceWith("<div id='hot-cold-scale'><h2>" + "New game! Make your guess, " + userName + "!" + "</h2></div>");
-		$("#thermometer").replaceWith("<div id='thermometer'><img src='graphthermometer.png' width='50px' alt='hot'></div>");
+		$("#hot-cold-scale h2").text("New game! Make your guess, " + userName + "!");
+		$(".thermometer").attr('src', 'graphthermometer.png');
+		$('#userGuess').focus();
 
 		$('#count').replaceWith("<span id='count'>" + 0 + "</span>");
 
