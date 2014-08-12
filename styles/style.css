@@ -1,0 +1,346 @@
+/*---------------------------------------------------------------------------------
+   Common Styles
+---------------------------------------------------------------------------------*/
+/*float styles*/
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	background-color: #394264;
+}
+
+#thermometer {
+	position: relative;
+	float: right;
+}
+
+#thermometer img {
+margin-right: 30px;
+}
+
+
+body {
+	position: relative;
+	bottom: 0;
+	width: 600px;
+	/* min-width: 400px; */
+	height: 100%;
+	margin: auto;
+	font-family: 'Lato', Calibri, Arial, sans-serif;
+	background-color: #eee;
+	text-align: center;
+	-webkit-box-shadow: 0 0 10px #22283C;
+	box-shadow: 0 0 10px #22283C;
+	-moz-box-shadow: 0 0 10px #22283C;	
+
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+ul li {	
+	display: inline;
+}
+
+/*---------------------------------------------------------------------------------
+   Header Styles
+---------------------------------------------------------------------------------*/
+
+nav {
+	position: relative;
+	height: 10%;
+	padding: 1em;
+}
+
+nav ul li {
+	text-transform: uppercase;
+	font-weight: 700;
+	font-size: 1.2em;
+}
+
+nav ul li:first-child {
+	float: left;
+}
+
+nav ul li:last-child {
+	float: right;
+}
+
+nav a {
+
+	color: #333;
+}
+
+h1 {
+	font-weight: 900;
+	font-size: 3em;
+	padding: 0.8em;
+	color: #333;
+
+}
+
+/*style for hidden modal*/
+.overlay {
+	width: 100%;
+	height: 100%;
+	color: #fff;
+	background: #e74c3c;
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 0;
+	z-index: 1000;
+	display: none;
+}
+
+.goodbye h1 {
+	color: #333;
+	font-size: 2em;
+	padding: 40px 0 0 0;
+
+}
+
+
+
+.goodbye h2 {
+	color: #333 !important;
+	font-size: 2em !important;
+	margin-top: 10px;
+	padding: 20px 0 20px 0 !important;
+
+}
+.goodbye h2:hover {
+	color: #cc324b !important;
+	background: #DB7081 !important;
+
+}
+
+.content {
+	color: #e74c3c;
+	background: #fff;
+	position: relative;
+	height: auto;
+	width: 600px;
+	border-radius: 3px;
+	top: 15%;
+	margin: auto auto;
+	border: 1px solid rgba(0,0,0,0.1);
+}
+
+.content h3 {
+	margin: 0;
+	padding: 0.4em;
+	text-align: center;
+	font-size: 2.4em;
+	font-weight: 300;
+	opacity: 0.8;
+	background: rgba(0,0,0,0.1);
+	border-radius: 3px 3px 0 0;
+}
+
+.content > div {
+	padding: 15px 40px 30px;
+	margin: 0;
+	font-weight: 300;
+	font-size: 1.15em;
+}
+
+.content > div p {
+	margin: 0;
+	padding: 10px 0;
+	line-height: 2em;
+	text-align: justify;
+}
+
+.content > div ul {
+	margin-bottom: -30px;
+	padding: 0 0 30px 20px;
+	text-align: left;
+}
+
+.content > div ul li {
+	padding: 5px 0;
+	display: block;	
+	list-style-type: disc;
+	line-height: 1.5em;
+}
+
+.discontinue:hover {
+	color: #fff;
+}
+
+.playagain:hover {
+	color: #fff;
+}
+
+.content > div ul li strong{
+	text-decoration: underline;
+}
+
+.content > div a {
+	font-size: 0.8em;
+	background: #1F253D;
+	color: #95a5a6;
+	padding: 0.5em 2em;
+	margin-bottom: 50px;
+	border-radius: 3px;
+}
+
+/*---------------------------------------------------------------------------------
+   Game Section Styles
+---------------------------------------------------------------------------------*/
+
+.game {
+	position: relative;
+	background-color: #394264;
+	width: 380px;
+	height: 380px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	margin: 0 auto;
+	box-shadow: 0 0 10px #bbb;
+	-moz-box-shadow: 0 0 10px #bbb;	
+	display: block;
+
+
+}
+
+h2 {
+	margin: 0 auto;	
+	background: #cc324b;
+	padding: 1em 0.4em;
+	font-size: 1.5em;
+	font-weight: 400;
+	display: block;
+	line-height: 1em;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	color: #fff;
+}
+
+.game p {
+	margin-top: 0.5em;
+	font-size: 1.8em;
+	padding-bottom: 0.5em;
+}
+
+#count {
+	color: #f39c12;
+	font-weight: 700;
+	font-size: 1.5em;
+}
+
+#guesses {
+	background: #11a8ab;
+	padding: 20px 0 0 0;
+	margin-top: 30px;
+}	
+
+input {
+	width: 300px;
+	height: 50px;
+	display: block;
+	padding: 0.8em 0;
+	margin: 0.8em auto 0;
+	background: #fff;
+	color: #50597b;
+	border: solid 1px #1f253d;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+input.button {
+	background: #1F253D;
+	color: #95a5a6;
+	font-size: 2em;
+	padding: 0.2em;
+	-webkit-transition: background 1s ease-in-out;
+	-moz-transition: background 1s ease-in-out;
+	-ms-transition: background 1s ease-in-out;
+	-o-transition: background 1s ease-in-out;
+	transition: background 1s ease-in-out;
+}
+
+input.button:hover {
+	background: #ddd;
+	color: #fff;
+	-webkit-transition: background 1s ease-in-out;
+	-moz-transition: background 1s ease-in-out;
+	-ms-transition: background 1s ease-in-out;
+	-o-transition: background 1s ease-in-out;
+	transition: background 1s ease-in-out;
+	cursor: pointer;
+}
+
+input.text {
+	text-align: center;
+	padding: 0.2em;
+	font-size: 2em;
+}
+
+input:focus {
+	outline: none !important;
+}
+
+::-webkit-input-placeholder {
+   color: #95a5a6;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: #95a5a6;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #95a5a6; 
+}
+
+:-ms-input-placeholder {  
+   color: #95a5a6; 
+}
+
+p.your-guesses {
+font-size: 1em;
+}
+
+ul.guessBox {
+	margin: 10px auto 0;
+	background: #11a8ab;
+	height: 100%;
+	padding: 0.5em;
+	display: block;
+	line-height: 2em;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	color: #fff;
+	overflow: auto;
+}
+ul.guessBox li {
+	display: block;
+	background-color: #1a4e95;
+	padding: 0.3em;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	width: 25%;
+	margin: 4px auto;
+	color: #fff;
+}
