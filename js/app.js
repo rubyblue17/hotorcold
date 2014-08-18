@@ -5,87 +5,111 @@ $(document).ready(function(){
 
 
 
-function greeting () {
+	function secretNumber () {
 
-	if (userName != null) {
-	$("#hot-cold-scale h2").text("Hi, " + userName + "! Make your guess below.");
+			randomNumber = Math.floor(Math.random() * 99) + 1;
+				console.log(randomNumber);
+				return randomNumber;
+
+	};
+
+function resetGame () {
+	if (userName != null) {		
+		$("#guessList").empty();
+		secretNumber();
+		guessCount = 0;
+		hotOrcold = null;
+		guessNumber = null;
+		$(".hint").show();
+		$(".hint").text("");
+		$("#hot-cold-scale").show();
+		$("#hot-cold-scale h2").text("Hi, " + userName + "! Make your guess below.");
+		$("#win-message").removeClass('show');		
+		$(".thermometer").attr('src', 'graphthermometer.png');
+		$("#guessButton").removeAttr('disabled', 'disabled')
+		$('#userGuess').focus();
+		$('#count').text(guessCount);
 	}
 	else {
 		alert("You forgot to enter your name! Please enter your name."); 
-		location.reload();
+		location.reload();		
 	}
+
 };
+	resetGame();
 
-greeting();
+  	function hint(a, b, c) {
 
-	var secretNumber = function() {
+  		var hintB = Math.abs(a-b);
+  		var hintC = Math.abs(a-c);
 
-			randomNumber = Math.floor(Math.random() * 100-1) + 1;
-				console.log(randomNumber);
-				return randomNumber;
-	};
+  		if(hintC > hintB) {
+  			$(".hint").text("Hotter than last guess");
+  		} else if (hintB > hintC) {
+  			$(".hint").text("Colder than last guess");
+  		} else if (hintB === hintC){
+  			$(".hint").text("Same as last guess");  			
+  		} 
 
-	secretNumber();
-
-
-	function runGame() { 
-
-		var guessNumber = $("#userGuess").val();
-			console.log(guessNumber);	
-
-		randomNumber;
-
-		var hotOrcold = (Math.abs(guessNumber - randomNumber));
-			console.log(hotOrcold);
+  	};
 
 
-		if(hotOrcold === 0) {
+
+
+	function feedback(a) { 
+
+
+
+		if(a === 0) {
 			$("#hot-cold-scale").hide();
+			$("#guessButton").attr('disabled', 'disabled')
 			$("#win-message").addClass('show');
+			$(".hint").hide();
+
 		}
 
-		else if(hotOrcold >= 51 && hotOrcold <=60) {
+		else if(a >= 51 && a <=60) {
 			$("#hot-cold-scale h2").text("Brrrrrrrrr!");
 			$(".thermometer").attr('src', 'graphthermometer-brrr.png');
 
 		}
 
-		else if(hotOrcold >= 41 && hotOrcold <=50) {
+		else if(a >= 41 && a <=50) {
 			$("#hot-cold-scale h2").text("Cold!");
 			$(".thermometer").attr('src', 'graphthermometer-cold.png');
 		}
 
-		else if(hotOrcold >= 31 && hotOrcold <=40) {
+		else if(a >= 31 && a <=40) {
 			$("#hot-cold-scale h2").text("Kinda chilly.");
 			$(".thermometer").attr('src', 'graphthermometer-chilly.png');
 
 		}
 
-		else if(hotOrcold >= 26 && hotOrcold <=30) {
+		else if(a >= 26 && a <=30) {
 			$("#hot-cold-scale h2").text("Meh. Lukewarm.");
 			$(".thermometer").attr('src', 'graphthermometer-lukewarm.png');
 
 		}
 
-		else if(hotOrcold >= 21 && hotOrcold <=25) {
+		else if(a >= 21 && a <=25) {
 			$("#hot-cold-scale h2").text("Warm!");
 			$(".thermometer").attr('src', 'graphthermometer-warm.png');
 
 		}
 
-		else if(hotOrcold >= 11 && hotOrcold <=20) {
+		else if(a >= 11 && a <=20) {
 			$("#hot-cold-scale h2").text("Warmer!");
 			$(".thermometer").attr('src', 'graphthermometer-warmer.png');
 
 		}
 
-		else if(hotOrcold >= 6 && hotOrcold <=10) {
+		else if(a >= 6 && a <=10) {
 			$("#hot-cold-scale h2").text("Smokin!");
 			$(".thermometer").attr('src', 'graphthermometer-smokin.png');
 
 		}
 
-		else if(hotOrcold >= 1 && hotOrcold <=5) {
+		else if(a >= 1 && a <=5) {
 			$("#hot-cold-scale h2").text("On FIRE!");
 			$(".thermometer").attr('src', 'graphthermometer-fire.png');
 
@@ -107,49 +131,54 @@ greeting();
 	$("#guessButton").on("click", function(event){
 	event.preventDefault();
 
-
 		var guessNumber = $("#userGuess").val();
+			console.log(guessNumber);	
+
+		var compareHotOrcold = hotOrcold;
+			console.log(compareHotOrcold);
+
+	hotOrcold = (Math.abs(randomNumber - guessNumber));
+			console.log(hotOrcold);
+
+
 			if(guessNumber >=1 && guessNumber <=100 && guessNumber % 1 === 0 ) {
-				$("#guessList").prepend("<li>" + guessNumber + "</li>");
-				runGame();
-				countTotal();
+					if (guessCount < 1) {
+						$("#guessList").prepend("<li>" + guessNumber + "</li>");
+						feedback(hotOrcold);
+						countTotal();
+					}
+					else {
+						$("#guessList").prepend("<li>" + guessNumber + "</li>");
+						hint(randomNumber, compareHotOrcold, hotOrcold);
+						feedback(hotOrcold);
+						countTotal();
+					}
+
+
 			} else {
 			alert("Not a valid number, try again!")
 			}
 			$("#userGuess").val(" ");
-		
+		 
 	}); 
 
 
+function newGameMessage () {
+	$("#hot-cold-scale h2").text("New game! Make your guess, " + userName + "!");
+
+};
+
+
 	$(".new").on("click", function() {
-
-		$("#guessList").empty();
-		secretNumber();
-		var guessCount = 0;
-		$("#hot-cold-scale").show();
-		$("#win-message").removeClass('show');		
-		$("#hot-cold-scale h2").text("New game! Make your guess, " + userName + "!");
-		$(".thermometer").attr('src', 'graphthermometer.png');
-
-		$('#count').text(guessCount);
-		$('#userGuess').focus();
-
+		resetGame();
+		newGameMessage();
 
 	});
 
 	$("#win-message").on("click", ".playagain", function(event) {
-			event.preventDefault();
-
-		$("#guessList").empty();
-		secretNumber();
-		var guessCount = 0;
-		$("#hot-cold-scale").show();
-		$("#win-message").removeClass('show');						
-		$("#hot-cold-scale h2").text("New game! Make your guess, " + userName + "!");
-		$(".thermometer").attr('src', 'graphthermometer.png');
-		$('#userGuess').focus();
-
-		$('#count').replaceWith("<span id='count'>" + 0 + "</span>");
+		event.preventDefault();
+		resetGame();
+		newGameMessage();
 
 	}) ;	
 
@@ -159,14 +188,14 @@ greeting();
 	/*--- Display information modal box ---*/
 
   	$(".what").click(function(){
-    	$(".overlay").fadeIn(1000);
+    	$(".overlay").toggle("slide", {direction: "up"}, 400);
 
   	});
 
   	/*--- Hide information modal box ---*/
 
   	$("a.close").click(function(){
-  		$(".overlay").fadeOut(1000);
+    	$(".overlay").toggle("slide", {direction: "down"}, 400);
   	});
 
 });
